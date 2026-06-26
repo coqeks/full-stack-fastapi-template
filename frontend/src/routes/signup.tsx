@@ -35,10 +35,11 @@ const formSchema = z
   .refine((data) => data.password === data.confirm_password, {
     message: "The passwords don't match",
     path: ["confirm_password"],
-  })
+  }) //Form schema to ensure submitted forms meet the type/length requirement
 
-type FormData = z.infer<typeof formSchema>
+type FormData = z.infer<typeof formSchema> //Extracts a static type from zod schema using z.infer() method
 
+// Sets up route configuration and export it
 export const Route = createFileRoute("/signup")({
   component: SignUp,
   beforeLoad: async () => {
